@@ -12,14 +12,16 @@ public class EquationWindow : MonoBehaviour
 {
     EquationBank equBank;
 
-    string[] exts;
-    public bool[] extToggles;
+    string[] equations;
 
     public static List<string> Equations;
     public static List<string> EquationResult;
+    List<string> usedEquations;
+    int indexedEquation;
+    public int numOfAsteroids = 4;
 
-    private static StreamReader myStreamReader;
-    private static StreamWriter myStreamWriter;
+    //private static StreamReader myStreamReader;
+    //private static StreamWriter myStreamWriter;
 
     public InputField myInputField;
     private object EventSystemManager;
@@ -29,20 +31,23 @@ public class EquationWindow : MonoBehaviour
         equBank = new EquationBank();
 
         //Populate the bank of Equations from the .txt file
-        bool success;
-        success = equBank.PopulateList();
+        //bool success;
+        //success = equBank.PopulateList();
 
-        exts = new string[equBank.GetNumOfEquations];
+        equations = new string[equBank.GetNumOfEquations];
 
-        if (success)
+        /*if (success)
         {
             for (int i = 0; i < equBank.GetNumOfEquations; i++)
             {
                 string shortEquations = equBank.GetEquations(i);
             }
-        }
+        }*/
     }
-
+    void Start()
+    {
+        usedEquations = new List<string>(equations);
+    }
 
     void OnGUI()
     {
@@ -61,9 +66,24 @@ public class EquationWindow : MonoBehaviour
         
     }
 
-    void ListEquations()
+    public int ListEquations()
     {
-        
+        //List<string> usedEquations = new List<string>(equations);
+        int indexedEquation = UnityEngine.Random.Range(0, equations.Length);
+
+        if (!usedEquations.Contains(equBank.GetEquations(indexedEquation)))
+        {
+            usedEquations.Add(equBank.GetEquations(indexedEquation));
+        }
+        return indexedEquation;
+    }
+    public string WriteEquation(int index)
+    {
+        return equBank.GetEquations(index);
+    }
+    public void UnlistEquations(int equationInt)
+    {
+        usedEquations.Remove(equBank.GetEquations(equationInt));
     }
 
 }
