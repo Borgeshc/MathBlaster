@@ -16,6 +16,8 @@ public class ObjectPooling : MonoBehaviour
     int quad3;
     int quad4;
 
+    int quadNum; //Used to tell the script which quad to use.
+
     public GameObject spawnPoint1;  //Spawnpoints for each quad.
     public GameObject spawnPoint2;
     public GameObject spawnPoint3;
@@ -32,6 +34,9 @@ public class ObjectPooling : MonoBehaviour
     //[HideInInspector]
     public bool quad4InUse;
 
+    GameObject spawnPoint; //The point where the object will spawn.
+    public int objectCount;       //Keeps track of how many objects are active in the scnene.
+
     // Use this for initialization
     void Start()
     {
@@ -47,8 +52,8 @@ public class ObjectPooling : MonoBehaviour
     }
     void Update()
     {
-        if (Time.time > lastSpawn + spawnFreq && quad1InUse != true || quad2InUse != true || quad3InUse != true || quad4InUse != true)  //Makes sure that objects spawn according to the spawn frequency chosen.
-        {
+        if (Time.time > lastSpawn + spawnFreq && objectCount < 3)  //Makes sure that objects spawn according to the spawn frequency chosen.
+        {// && quad1InUse != true || quad2InUse != true || quad3InUse != true || quad4InUse != true
             ActivateObject();                   //Spawns the object.
         }
     }
@@ -106,33 +111,48 @@ public class ObjectPooling : MonoBehaviour
             return;
         }
 
-        if (!quad1InUse)                                                //If the lane is not in use
-        {
-            quad1InUse = true;                                          //Marks the lane as in use.
-            obj.transform.position = spawnPoint1.transform.position;    //Spawns the gameobject in the lane.
-            obj.GetComponent<AsteroidMovement>().QuadNum(1);            //Tells the gameobject which lane it is in.
-        }
-        else if (!quad2InUse)                                           //If the lane is not in use
-        {
-            quad2InUse = true;                                          //Marks the lane as in use.
-            obj.transform.position = spawnPoint2.transform.position;    //Spawns the gameobject in the lane.
-            obj.GetComponent<AsteroidMovement>().QuadNum(2);            //Tells the gameobject which lane it is in.
-        }
-        else if (!quad3InUse)                                           //If the lane is not in use
-        {
-            quad3InUse = true;                                          //Marks the lane as in use.
-            obj.transform.position = spawnPoint3.transform.position;    //Spawns the gameobject in the lane.
-            obj.GetComponent<AsteroidMovement>().QuadNum(3);            //Tells the gameobject which lane it is in.
-        }
-        else if (!quad4InUse)                                           //If the lane is not in use
-        {
-            quad4InUse = true;                                          //Marks the lane as in use.
-            obj.transform.position = spawnPoint4.transform.position;    //Spawns the gameobject in the lane.
-            obj.GetComponent<AsteroidMovement>().QuadNum(4);            //Tells the gameobject which lane it is in.
-        }
+        ChooseQuad();
+
+        obj.transform.position = spawnPoint.transform.position;    //Spawns the gameobject in the lane.
+        obj.GetComponent<AsteroidMovement>().QuadNum(quadNum);     //Tells the gameobject which lane it is in.
 
         obj.transform.rotation = transform.rotation;
         obj.SetActive(true);
+        objectCount++;                                             //Increases the count of objects in the scene.
+        
+    }
+
+    void ChooseQuad()
+    {
+        quadNum = Random.Range(1, 4);
+        if (quadNum == 1 && !quad1InUse)                                                //If the lane is not in use
+        {
+            print("Quad1 if called");
+            quad1InUse = true;                                          //Marks the lane as in use.
+            quadNum = 1;
+            spawnPoint = spawnPoint1;       //sets the spawnpoint to the quads position.
+        }
+        else if (quadNum == 2 && !quad2InUse)                                           //If the lane is not in use
+        {
+            print("Quad2 if called");
+            quad2InUse = true;                                          //Marks the lane as in use.
+            quadNum = 2;
+            spawnPoint = spawnPoint2;
+        }
+        else if (quadNum == 3 && !quad3InUse)                                           //If the lane is not in use
+        {
+            print("Quad3 if called");
+            quad3InUse = true;                                          //Marks the lane as in use.
+            quadNum = 3;
+            spawnPoint = spawnPoint3;
+        }
+        else if (quadNum == 4 && !quad4InUse)                                           //If the lane is not in use
+        {
+            print("Quad4 if called");
+            quad4InUse = true;                                          //Marks the lane as in use.
+            quadNum = 4;
+            spawnPoint = spawnPoint4;
+        }
     }
 }
 /*

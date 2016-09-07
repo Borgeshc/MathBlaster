@@ -14,9 +14,11 @@ public class AsteroidMovement : MonoBehaviour
     int equationIndex;
     int inQuadNum;
 
+    ObjectPooling objectPooling;
     void Start()
     {
         asteroidManager = GameObject.Find("AsteroidManager");   //Reference the Asteroid Manager gameobject.
+        objectPooling = asteroidManager.GetComponent<ObjectPooling>();
 
         //Creates a rectangle that identifies the screen height / width
         windowSize = new Rect(0, 0, Screen.width, Screen.height);
@@ -39,18 +41,19 @@ public class AsteroidMovement : MonoBehaviour
             switch(inQuadNum)   //Tells the asteroid manager what lane it is in and lets it know it is done using that lane.
             {
                 case 1:
-                    asteroidManager.GetComponent<ObjectPooling>().quad1InUse = false;
+                    objectPooling.quad1InUse = false;
                     break;
                 case 2:
-                    asteroidManager.GetComponent<ObjectPooling>().quad2InUse = false;
+                    objectPooling.quad2InUse = false;
                     break;
                 case 3:
-                    asteroidManager.GetComponent<ObjectPooling>().quad3InUse = false;
+                    objectPooling.quad3InUse = false;
                     break;
                 case 4:
-                    asteroidManager.GetComponent<ObjectPooling>().quad4InUse = false;
+                    objectPooling.quad4InUse = false;
                     break;
             }
+            objectPooling.objectCount--;    //Reduces the count of active objects in the scene.
             gameObject.SetActive(false);    //Turns off the gameobject.
         }
 	}
