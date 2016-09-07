@@ -6,7 +6,6 @@ public class Shooting : MonoBehaviour
     public GameObject missile;          //The missile prefab.
     public GameObject missileSpawn;     //Where the missile will spawn.
     public GameObject explosion;        //The explosoion prefab.
-    public float missileSpeed;          //How fast the missile will move.
 
     [HideInInspector]
     public GameObject canvas;                  //Reference to the canvas.

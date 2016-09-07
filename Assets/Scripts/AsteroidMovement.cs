@@ -75,9 +75,8 @@ public class AsteroidMovement : MonoBehaviour
         {
             clone = Instantiate(explosion, GetComponent<RectTransform>().position, GetComponent<RectTransform>().rotation) as GameObject; //Spawn the explosion prefab at the meteor.
             clone.transform.SetParent(player.GetComponent<Shooting>().canvas.transform);    //Child the explosion to the canvas so that it gets rendered.
-           
-            other.gameObject.SetActive(false);  //Destroy the meteor.
-            Destroy(this.gameObject);   //Destroy the missile.
+            Destroy(other.gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
