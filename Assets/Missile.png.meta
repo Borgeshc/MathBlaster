@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: bf513608f91910340b00f356cd6af466
-timeCreated: 1473268024
+guid: 6cb2e99604444e74da3ecb13793ea9ec
+timeCreated: 1473265919
 licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Explosions_2
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -39,7 +38,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,20 +51,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Explosions_2
-      rect:
-        serializedVersion: 2
-        x: 36
-        y: 137
-        width: 35
-        height: 37
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 

@@ -5,6 +5,7 @@ using System.Collections;
 
 public class AsteroidMovement : MonoBehaviour
 {
+    public GameObject explosion;    //Explosion prefab.
     GameObject asteroidManager; //Used to reference the AsteroidManager gameobject.
     public float speed; //The speed at which the asteroid will move.
     Rect windowSize;
@@ -14,12 +15,14 @@ public class AsteroidMovement : MonoBehaviour
     int equationIndex;
     int inQuadNum;
 
-    ObjectPooling objectPooling;
+    GameObject player;      //Reference to the player.
+    ObjectPooling objectPooling;    //Reference to the pooling script
+    GameObject clone;   //Clone to set the explosion to.
     void Start()
     {
         asteroidManager = GameObject.Find("AsteroidManager");   //Reference the Asteroid Manager gameobject.
         objectPooling = asteroidManager.GetComponent<ObjectPooling>();
-
+        player = GameObject.Find("Player");
         //Creates a rectangle that identifies the screen height / width
         windowSize = new Rect(0, 0, Screen.width, Screen.height);
         //Spawn points start outside the screen, so starts out as false
@@ -65,5 +68,16 @@ public class AsteroidMovement : MonoBehaviour
     public void QuadNum(int quadNum)
     {
         inQuadNum = quadNum;    //Defines the lane the object is in.
+    }
+    void OnTriggerEnter2D(Collider2D other) //If you collide with a meteor activate the explosion sprite and destoy the missile and meteor.
+    {
+        if (other.tag == "Rocket")
+        {
+            clone = Instantiate(explosion, GetComponent<RectTransform>().position, GetComponent<RectTransform>().rotation) as GameObject; //Spawn the explosion prefab at the meteor.
+            clone.transform.SetParent(player.GetComponent<Shooting>().canvas.transform);    //Child the explosion to the canvas so that it gets rendered.
+           
+            other.gameObject.SetActive(false);  //Destroy the meteor.
+            Destroy(this.gameObject);   //Destroy the missile.
+        }
     }
 }

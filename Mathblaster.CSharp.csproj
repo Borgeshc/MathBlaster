@@ -78,12 +78,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DestroySelf.cs" />
+    <Compile Include="Assets\MissileMovement.cs" />
     <Compile Include="Assets\Scripts\AsteroidMovement.cs" />
     <Compile Include="Assets\Scripts\EquationBank.cs" />
     <Compile Include="Assets\Scripts\EquationUnit.cs" />
     <Compile Include="Assets\Scripts\EquationWindow.cs" />
     <Compile Include="Assets\Scripts\ObjectPooling.cs" />
     <Compile Include="Assets\Scripts\SceneManager.cs" />
+    <Compile Include="Assets\Shooting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Equations1.txt" />
