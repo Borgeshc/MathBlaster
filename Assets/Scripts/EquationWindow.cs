@@ -18,10 +18,6 @@ public class EquationWindow : MonoBehaviour
     public static List<string> EquationResult;
     List<string> usedEquations;
     int indexedEquation;
-    public int numOfAsteroids = 4;
-
-    //private static StreamReader myStreamReader;
-    //private static StreamWriter myStreamWriter;
 
     public InputField myInputField;
     private object EventSystemManager;
@@ -31,8 +27,8 @@ public class EquationWindow : MonoBehaviour
         equBank = new EquationBank();
 
         //Populate the bank of Equations from the .txt file
-        //bool success;
-        //success = equBank.PopulateList();
+        bool success;
+        success = equBank.PopulateList();
 
         equations = new string[equBank.GetNumOfEquations];
 
@@ -56,11 +52,9 @@ public class EquationWindow : MonoBehaviour
 
         if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.Return))
         {
-            Debug.Log("Test the Text entered : " + myInputField.text);
             for(int i = 0; i < equBank.GetNumOfEquations; i++)
             {
-                Debug.Log("Equation is: " + equBank.GetEquations(i));
-                Debug.Log("Equation Result is: " + equBank.GetEquationResult(i));
+
             }
         }
         

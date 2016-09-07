@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine.UI;
 
 
 public class AsteroidMovement : MonoBehaviour
@@ -33,7 +34,7 @@ public class AsteroidMovement : MonoBehaviour
         if (!insideRect && windowSize.Contains(transform.position))
         {
             insideRect = true;
-            //WriteEquation();
+            WriteEquationOnAsteroid();
         }
         else if (insideRect && !windowSize.Contains(transform.position))
         {
@@ -57,10 +58,11 @@ public class AsteroidMovement : MonoBehaviour
             gameObject.SetActive(false);    //Turns off the gameobject.
         }
     }
-    void WriteEquation()
+    void WriteEquationOnAsteroid()
     {
         equationIndex = Camera.main.GetComponent<EquationWindow>().ListEquations();
-        gameObject.GetComponent<GUIText>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
+        //gameObject.GetComponentInChildren<Text>().text = "2 + 2 = ?";
+        gameObject.GetComponentInChildren<Text>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
     }
     public void QuadNum(int quadNum)
     {

@@ -127,28 +127,28 @@ public class ObjectPooling : MonoBehaviour
         quadNum = Random.Range(1, 4);
         if (quadNum == 1 && !quad1InUse)                                                //If the lane is not in use
         {
-            print("Quad1 if called");
+            //print("Quad1 if called");
             quad1InUse = true;                                          //Marks the lane as in use.
             quadNum = 1;
             spawnPoint = spawnPoint1;       //sets the spawnpoint to the quads position.
         }
         else if (quadNum == 2 && !quad2InUse)                                           //If the lane is not in use
         {
-            print("Quad2 if called");
+            //print("Quad2 if called");
             quad2InUse = true;                                          //Marks the lane as in use.
             quadNum = 2;
             spawnPoint = spawnPoint2;
         }
         else if (quadNum == 3 && !quad3InUse)                                           //If the lane is not in use
         {
-            print("Quad3 if called");
+            //print("Quad3 if called");
             quad3InUse = true;                                          //Marks the lane as in use.
             quadNum = 3;
             spawnPoint = spawnPoint3;
         }
         else if (quadNum == 4 && !quad4InUse)                                           //If the lane is not in use
         {
-            print("Quad4 if called");
+            //print("Quad4 if called");
             quad4InUse = true;                                          //Marks the lane as in use.
             quadNum = 4;
             spawnPoint = spawnPoint4;
