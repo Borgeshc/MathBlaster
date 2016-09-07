@@ -62,10 +62,10 @@ public class ObjectPooling : MonoBehaviour
         quad4 = 0 + (Screen.height / 5);
 
         //Sets the spawn points to the quad positions.
-        spawnPoint1.transform.position = new Vector2(Screen.width + (Screen.width / 5), quad1);
-        spawnPoint2.transform.position = new Vector2(Screen.width + (Screen.width / 5), quad2);
-        spawnPoint3.transform.position = new Vector2(Screen.width + (Screen.width / 5), quad3);
-        spawnPoint4.transform.position = new Vector2(Screen.width + (Screen.width / 5), quad4);
+        spawnPoint1.transform.position = new Vector2(Screen.width + (Screen.width / 6), quad1);
+        spawnPoint2.transform.position = new Vector2(Screen.width + (Screen.width / 6), quad2);
+        spawnPoint3.transform.position = new Vector2(Screen.width + (Screen.width / 6), quad3);
+        spawnPoint4.transform.position = new Vector2(Screen.width + (Screen.width / 6), quad4);
     }
     public GameObject GetPooledObject() //Can be called to get a gameobject in the pool.
     {

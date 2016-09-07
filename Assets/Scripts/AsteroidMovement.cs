@@ -12,12 +12,11 @@ public class AsteroidMovement : MonoBehaviour
     public bool insideRect;
     //Stores the int to re-add the equation to the original list to re-use if possible
     int equationIndex;
+    int inQuadNum;
 
     void Start()
     {
         asteroidManager = GameObject.Find("AsteroidManager");   //Reference the Asteroid Manager gameobject.
-        print(asteroidManager);
-        print((0 - (Screen.width / 2)));
 
         //Creates a rectangle that identifies the screen height / width
         windowSize = new Rect(0, 0, Screen.width, Screen.height);
@@ -28,47 +27,40 @@ public class AsteroidMovement : MonoBehaviour
 	void Update ()
     {
         transform.Translate(Vector2.left * Time.deltaTime * speed); //Moves the asteroid to the left.
-
         //Spawned asteroids collide with screen bounds (checks only once)
-        if(!insideRect && windowSize.Contains(transform.position))
+        if (!insideRect && windowSize.Contains(transform.position))
         {
             insideRect = true;
-            WriteEquation();
+            //WriteEquation();
         }
-	}
-    void WriteEquation()
-    {
-        equationIndex = Camera.main.GetComponent<EquationWindow>().ListEquations();
-        gameObject.GetComponent<GUIText>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
-    }
-    public void QuadNum(int quadNum)
-    {
-        //Tells the ObjectPooling script that the quad that the asteroid is currently on is availible for use.
-        try
+        else if (insideRect && !windowSize.Contains(transform.position))
         {
-            switch (quadNum)
+            insideRect = false;
+            switch(inQuadNum)   //Tells the asteroid manager what lane it is in and lets it know it is done using that lane.
             {
                 case 1:
-                    if (transform.position.x <= (0 - (Screen.width / 2)))
-                        asteroidManager.GetComponent<ObjectPooling>().quad1InUse = false;
+                    asteroidManager.GetComponent<ObjectPooling>().quad1InUse = false;
                     break;
                 case 2:
-                    if (transform.position.x <= (0 - (Screen.width / 2)))
-                        asteroidManager.GetComponent<ObjectPooling>().quad2InUse = false;
+                    asteroidManager.GetComponent<ObjectPooling>().quad2InUse = false;
                     break;
                 case 3:
-                    if (transform.position.x <= (0 - (Screen.width / 2)))
-                        asteroidManager.GetComponent<ObjectPooling>().quad3InUse = false;
+                    asteroidManager.GetComponent<ObjectPooling>().quad3InUse = false;
                     break;
                 case 4:
-                    if (transform.position.x <= (0 - (Screen.width / 2)))
-                        asteroidManager.GetComponent<ObjectPooling>().quad4InUse = false;
+                    asteroidManager.GetComponent<ObjectPooling>().quad4InUse = false;
                     break;
             }
+            gameObject.SetActive(false);    //Turns off the gameobject.
         }
-        catch (Exception ex)
-        {
-            Debug.Log(ex);
-        }
+	}
+    //void WriteEquation()
+    //{
+    //    equationIndex = Camera.main.GetComponent<EquationWindow>().ListEquations();
+    //    gameObject.GetComponent<GUIText>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
+    //}
+    public void QuadNum(int quadNum)
+    {
+        inQuadNum = quadNum;    //Defines the lane the object is in.
     }
 }
