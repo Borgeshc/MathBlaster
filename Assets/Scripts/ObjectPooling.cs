@@ -35,6 +35,8 @@ public class ObjectPooling : MonoBehaviour
 
     GameObject spawnPoint; //The point where the object will spawn.
     public int objectCount;       //Keeps track of how many objects are active in the scnene.
+    [HideInInspector]
+    public bool stopSpawning;   //Stops the spawning of objects if set to true.
 
     // Use this for initialization
     void Start()
@@ -51,7 +53,7 @@ public class ObjectPooling : MonoBehaviour
     }
     void Update()
     {
-        if (Time.time > lastSpawn + spawnFreq && objectCount < 3)  //Makes sure that objects spawn according to the spawn frequency chosen.
+        if (Time.time > lastSpawn + spawnFreq && objectCount < 3 && !stopSpawning)  //Makes sure that objects spawn according to the spawn frequency chosen.
         {// && quad1InUse != true || quad2InUse != true || quad3InUse != true || quad4InUse != true
             ActivateObject();                   //Spawns the object.
         }
@@ -117,8 +119,7 @@ public class ObjectPooling : MonoBehaviour
 
         obj.transform.rotation = transform.rotation;
         obj.SetActive(true);
-        objectCount++;                                             //Increases the count of objects in the scene.
-        
+        objectCount++;                                             //Increases the count of objects in the scene.       
     }
 
     void ChooseQuad()

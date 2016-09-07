@@ -57,6 +57,7 @@ public class AsteroidMovement : MonoBehaviour
                     break;
             }
             objectPooling.objectCount--;    //Reduces the count of active objects in the scene.
+            Camera.main.GetComponent<WaveManager>().AsteroidDestroyed(); //Tells the wave manager that an asteroid was destroyed.
             gameObject.SetActive(false);    //Turns off the gameobject.
         }
     }
