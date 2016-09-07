@@ -10,7 +10,8 @@ using System.Reflection;
 
 public class EquationWindow : MonoBehaviour
 {
-    EquationBank equBank;
+    public EquationBank equBank;
+    ObjectPooling myPool;
 
     string[] equations;
 
@@ -21,6 +22,8 @@ public class EquationWindow : MonoBehaviour
 
     public InputField myInputField;
     private object EventSystemManager;
+    GameObject astManager;
+    int asteroidCount;
 
     void Awake()
     {
@@ -43,6 +46,7 @@ public class EquationWindow : MonoBehaviour
     void Start()
     {
         usedEquations = new List<string>(equations);
+        astManager = GameObject.Find("AsteroidManager");
     }
 
     void OnGUI()
@@ -50,16 +54,26 @@ public class EquationWindow : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(myInputField.gameObject, null);
         myInputField.OnPointerClick(new PointerEventData(EventSystem.current));
 
+        string userEnterText;
+
         if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.Return))
         {
-            for(int i = 0; i < equBank.GetNumOfEquations; i++)
+            userEnterText = myInputField.text;
+        }
+    }
+    int CompareResults(string text)
+    {
+        int temp = -1;
+        for(int i = 0; i < equBank.GetNumOfEquations; i++)
+        {
+            if (text == equBank.GetEquations(i))
             {
-
+                temp = i;
             }
         }
+        return temp;
         
     }
-
     public int ListEquations()
     {
         //List<string> usedEquations = new List<string>(equations);

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 
@@ -14,17 +15,22 @@ public class AsteroidMovement : MonoBehaviour
     //Stores the int to re-add the equation to the original list to re-use if possible
     int equationIndex;
     int inQuadNum;
-
+    //EquationWindow myWindow;
     ObjectPooling objectPooling;
+    EquationWindow myWindow;
+
     void Start()
     {
         asteroidManager = GameObject.Find("AsteroidManager");   //Reference the Asteroid Manager gameobject.
         objectPooling = asteroidManager.GetComponent<ObjectPooling>();
+        //myWindow = new EquationWindow();
 
         //Creates a rectangle that identifies the screen height / width
         windowSize = new Rect(0, 0, Screen.width, Screen.height);
         //Spawn points start outside the screen, so starts out as false
         insideRect = false;
+
+        myWindow = Camera.main.GetComponent<EquationWindow>();
 
     }
 	void Update ()
@@ -63,6 +69,8 @@ public class AsteroidMovement : MonoBehaviour
         equationIndex = Camera.main.GetComponent<EquationWindow>().ListEquations();
         //gameObject.GetComponentInChildren<Text>().text = "2 + 2 = ?";
         gameObject.GetComponentInChildren<Text>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
+        gameObject.GetComponent<AsteroidID>().answer = int.Parse(myWindow.equBank.GetEquationResult(equationIndex));
+        print("The answer attached to the asteroid is: " + gameObject.GetComponent<AsteroidID>().answer);
     }
     public void QuadNum(int quadNum)
     {

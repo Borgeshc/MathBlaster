@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AsteroidID.cs" />
     <Compile Include="Assets\Scripts\AsteroidMovement.cs" />
     <Compile Include="Assets\Scripts\EquationBank.cs" />
     <Compile Include="Assets\Scripts\EquationUnit.cs" />

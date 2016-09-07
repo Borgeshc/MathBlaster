@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ObjectPooling : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class ObjectPooling : MonoBehaviour
     public GameObject spawnPoint4;
 
     public List<GameObject> pooledObjects;  //A list of all the active pooled objects.
+    public GameObject[] arrayObjects;
+    //public List<int> resultsOnAsteroids;
 
     //[HideInInspector]
     public bool quad1InUse; //Bools to tell if the lane is being used.
@@ -98,6 +101,7 @@ public class ObjectPooling : MonoBehaviour
         obj.transform.parent = transform;
         obj.SetActive(false);
         pooledObjects.Add(obj);
+        arrayObjects = pooledObjects.ToArray();
         yield break;
     }
 
@@ -116,10 +120,16 @@ public class ObjectPooling : MonoBehaviour
         obj.transform.position = spawnPoint.transform.position;    //Spawns the gameobject in the lane.
         obj.GetComponent<AsteroidMovement>().QuadNum(quadNum);     //Tells the gameobject which lane it is in.
 
+        if (!obj.gameObject.GetComponent<AsteroidID>())
+        {
+            obj.gameObject.AddComponent<AsteroidID>();
+            obj.gameObject.GetComponent<AsteroidID>().ID = objectCount;
+        }
+
         obj.transform.rotation = transform.rotation;
         obj.SetActive(true);
         objectCount++;                                             //Increases the count of objects in the scene.
-        
+        print(obj.gameObject.name);
     }
 
     void ChooseQuad()
@@ -153,6 +163,27 @@ public class ObjectPooling : MonoBehaviour
             quadNum = 4;
             spawnPoint = spawnPoint4;
         }
+    }
+    public bool CompareAnswers (string answer)
+    {
+        bool correct = false;
+        for (int i = 0; i< pooledObjects.Count; i++)
+        {
+            if (answer == arrayObjects[i].GetComponent<AsteroidID>().answer.ToString())
+            {
+                correct = true;
+                break;
+            }
+            else
+            {
+                correct = false;
+            }
+        }
+        return correct;
+    }
+    void ResetTransformAsteroid(int index)
+    {
+        pooledObjects.IndexOf(pooledObjects, index);
     }
 }
 /*
