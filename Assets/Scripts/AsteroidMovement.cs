@@ -56,12 +56,12 @@ public class AsteroidMovement : MonoBehaviour
             objectPooling.objectCount--;    //Reduces the count of active objects in the scene.
             gameObject.SetActive(false);    //Turns off the gameobject.
         }
-	}
-    //void WriteEquation()
-    //{
-    //    equationIndex = Camera.main.GetComponent<EquationWindow>().ListEquations();
-    //    gameObject.GetComponent<GUIText>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
-    //}
+    }
+    void WriteEquation()
+    {
+        equationIndex = Camera.main.GetComponent<EquationWindow>().ListEquations();
+        gameObject.GetComponent<GUIText>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
+    }
     public void QuadNum(int quadNum)
     {
         inQuadNum = quadNum;    //Defines the lane the object is in.
