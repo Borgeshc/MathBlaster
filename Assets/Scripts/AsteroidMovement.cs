@@ -57,6 +57,7 @@ public class AsteroidMovement : MonoBehaviour
                     break;
             }
             objectPooling.objectCount--;    //Reduces the count of active objects in the scene.
+            Camera.main.GetComponent<Score>().AddScore();
             gameObject.SetActive(false);    //Turns off the gameobject.
         }
     }
