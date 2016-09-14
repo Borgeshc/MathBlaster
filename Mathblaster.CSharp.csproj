@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\ObjectPooling.cs" />
     <Compile Include="Assets\Scripts\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
+    <Compile Include="Assets\Scripts\ShipMovement.cs" />
     <Compile Include="Assets\Scripts\Shooting.cs" />
   </ItemGroup>
   <ItemGroup>

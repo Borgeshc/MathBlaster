@@ -16,14 +16,10 @@ public class Shooting : MonoBehaviour
         canvas = GameObject.Find("Canvas");     //Set the canvas gameobject to the canvas in the hierarchy.
 	}
 	
-	void Update ()
+	public void Shoot ()
     {
-        if (Input.GetButtonDown("Fire1"))   //On mouse input
-        {
-            //Spawn the missile.
-            clone = Instantiate(missile, missileSpawn.transform.position, missileSpawn.transform.rotation) as GameObject;
-            clone.transform.SetParent(canvas.transform);
-            //Child the missile to the canvas so that it gets rendered.
-        }
+        clone = Instantiate(missile, missileSpawn.transform.position, missileSpawn.transform.rotation) as GameObject;
+        clone.transform.SetParent(canvas.transform);
+        //Child the missile to the canvas so that it gets rendered.
 	}
 }

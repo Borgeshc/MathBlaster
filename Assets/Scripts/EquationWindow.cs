@@ -49,7 +49,7 @@ public class EquationWindow : MonoBehaviour
 
         string userEnterText;
 
-        if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.Return))
+        if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.KeypadEnter))
         {
             userEnterText = myInputField.text;
             astManager.GetComponent<ObjectPooling>().CompareAnswers(userEnterText);
@@ -72,6 +72,10 @@ public class EquationWindow : MonoBehaviour
         
     }*/
 
+    public void ClearInputField()
+    {
+        myInputField.text = null;
+    }
     public int ListEquations()
     {
         //List<string> usedEquations = new List<string>(equations);
