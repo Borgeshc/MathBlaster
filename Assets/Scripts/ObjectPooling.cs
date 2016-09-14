@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ObjectPooling : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class ObjectPooling : MonoBehaviour
     public GameObject spawnPoint4;
 
     public List<GameObject> pooledObjects;  //A list of all the active pooled objects.
+    public GameObject[] arrayObjects;
 
     //[HideInInspector]
     public bool quad1InUse; //Bools to tell if the lane is being used.
@@ -148,6 +150,38 @@ public class ObjectPooling : MonoBehaviour
             quadNum = 4;
             spawnPoint = spawnPoint4;
         }
+    }
+
+    public bool CompareAnswers(string answer)
+    {
+        bool correct = false;
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            if (answer == arrayObjects[i].GetComponent<AsteroidID>().answer.ToString())
+            {
+                correct = true;
+                
+                /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+                 *                                                                         *
+                 *    This is where Hector will destroy the asteroid using this algorith   *
+                 *                                                                         *
+                 *    arrayObjects[i] will be the asteroid to destroy                      *
+                 *                                                                         *
+                 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+                break;
+            }
+            else
+            {
+                correct = false;
+            }
+        }
+        return correct;
+    }
+    public void ResetTransformAsteroid(int index)
+    {
+        //pooledObjects.IndexOf(pooledObjects, index);
+        pooledObjects.IndexOf(pooledObject, index);
     }
 }
 /*
