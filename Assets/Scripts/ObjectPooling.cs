@@ -35,6 +35,7 @@ public class ObjectPooling : MonoBehaviour
     //[HideInInspector]
     public bool quad4InUse;
 
+    GameObject player;     //The player ship
     GameObject spawnPoint; //The point where the object will spawn.
     public int objectCount;       //Keeps track of how many objects are active in the scnene.
     int idCounter; //Increments the id for the meteors.
@@ -42,6 +43,7 @@ public class ObjectPooling : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        player = GameObject.Find("Player");
         pooledObjects = new List<GameObject>(); //Populates the list with the instantiated gameobjects.
         
         SetSpawnPoints();
@@ -163,7 +165,10 @@ public class ObjectPooling : MonoBehaviour
             if (answer == arrayObjects[i].GetComponent<AsteroidID>().answer.ToString())
             {
                 correct = true;
-                
+                print( "Entered answer is: "+ answer);
+                print("Correct answer is: " + arrayObjects[i].GetComponent<AsteroidID>().answer.ToString());
+
+                player.GetComponent<ShipMovement>().targetFound = true;
                 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
                  *                                                                         *
                  *    This is where Hector will destroy the asteroid using this algorith   *
@@ -177,6 +182,8 @@ public class ObjectPooling : MonoBehaviour
             else
             {
                 correct = false;
+                print("Entered answer is: " + answer);
+                print("Correct answer is: " + arrayObjects[i].GetComponent<AsteroidID>().answer.ToString());
             }
         }
         return correct;
