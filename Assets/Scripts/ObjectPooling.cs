@@ -168,8 +168,9 @@ public class ObjectPooling : MonoBehaviour
             if (answer == arrayObjects[i].GetComponent<AsteroidID>().answer.ToString())
             {
                 correct = true;
-                player.GetComponent<Shooting>().Shoot();
-                Camera.main.GetComponent<EquationWindow>().ClearInputField();
+                player.GetComponent<Shooting>().Shoot();                            //Shoot the missile
+                Camera.main.GetComponent<EquationWindow>().ClearInputField();       //Clears the input field
+                arrayObjects[i].GetComponent<AsteroidID>().answer = -100000;        //Temporarily delete answer
                 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
                  *                                                                         *
                  *    This is where Hector will destroy the asteroid using this algorith   *

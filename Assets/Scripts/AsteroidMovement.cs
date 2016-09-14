@@ -86,6 +86,7 @@ public class AsteroidMovement : MonoBehaviour
             Destroy(other.gameObject);
             objectPooling.objectCount--;
             objectPooling.objActive = false;
+            player.GetComponent<Shooting>().shot = false;
             gameObject.SetActive(false);
         }
     }

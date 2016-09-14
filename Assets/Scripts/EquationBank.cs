@@ -7,7 +7,6 @@ using System.Collections.Generic;
 public class EquationBank
 {
     List<EquationUnit> theEquations = new List<EquationUnit>();
-    List<string> differentEquationResult = new List<string>();
     //FileInfo sourceFile;
 
     public int GetNumOfEquations

@@ -9,8 +9,8 @@ public class Score : MonoBehaviour {
     private int targetScore;
     [HideInInspector]
     public int score;
-    [HideInInspector]
-    public int vipScore;
+   // [HideInInspector]
+  //  public int vipScore;
     public int life;
 
 	private int combo;

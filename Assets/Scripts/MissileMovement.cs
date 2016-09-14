@@ -3,13 +3,11 @@ using System.Collections;
 
 public class MissileMovement : MonoBehaviour
 {
-    GameObject player;      //Player gameobject
     public float missileSpeed;     //Speed of the missile
 
 	// Use this for initialization
 	void Start ()
     {
-        player = GameObject.Find("Player");     //Find the player 
 	}
 	void Update ()
     {
