@@ -70,7 +70,7 @@ public class AsteroidMovement : MonoBehaviour
         //gameObject.GetComponentInChildren<Text>().text = "2 + 2 = ?";
         gameObject.GetComponentInChildren<Text>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
         gameObject.GetComponent<AsteroidID>().answer = int.Parse(myWindow.equBank.GetEquationResult(equationIndex));
-        print("The answer attached to the asteroid is: " + gameObject.GetComponent<AsteroidID>().answer);
+        //print("The answer attached to the asteroid is: " + gameObject.GetComponent<AsteroidID>().answer);
     }
     public void QuadNum(int quadNum)
     {

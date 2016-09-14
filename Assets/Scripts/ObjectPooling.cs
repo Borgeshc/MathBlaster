@@ -129,7 +129,6 @@ public class ObjectPooling : MonoBehaviour
         obj.transform.rotation = transform.rotation;
         obj.SetActive(true);
         objectCount++;                                             //Increases the count of objects in the scene.
-        print(obj.gameObject.name);
     }
 
     void ChooseQuad()
@@ -172,6 +171,15 @@ public class ObjectPooling : MonoBehaviour
             if (answer == arrayObjects[i].GetComponent<AsteroidID>().answer.ToString())
             {
                 correct = true;
+
+                /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+                 *                                                                         *
+                 *    This is where Hector will destroy the asteroid using this algorith   *
+                 *                                                                         *
+                 *    arrayObjects[i] will be the asteroid to destroy                      *
+                 *                                                                         *
+                 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
                 break;
             }
             else
@@ -181,9 +189,10 @@ public class ObjectPooling : MonoBehaviour
         }
         return correct;
     }
-    void ResetTransformAsteroid(int index)
+    public void ResetTransformAsteroid(int index)
     {
-        pooledObjects.IndexOf(pooledObjects, index);
+        //pooledObjects.IndexOf(pooledObjects, index);
+        pooledObjects.IndexOf(pooledObject, index);
     }
 }
 /*

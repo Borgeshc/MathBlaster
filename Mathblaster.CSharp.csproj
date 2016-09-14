@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\EquationWindow.cs" />
     <Compile Include="Assets\Scripts\ObjectPooling.cs" />
     <Compile Include="Assets\Scripts\SceneManager.cs" />
+    <Compile Include="Assets\Scripts\Score.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Equations1.txt" />

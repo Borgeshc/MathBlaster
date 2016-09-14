@@ -35,13 +35,6 @@ public class EquationWindow : MonoBehaviour
 
         equations = new string[equBank.GetNumOfEquations];
 
-        /*if (success)
-        {
-            for (int i = 0; i < equBank.GetNumOfEquations; i++)
-            {
-                string shortEquations = equBank.GetEquations(i);
-            }
-        }*/
     }
     void Start()
     {
@@ -59,21 +52,26 @@ public class EquationWindow : MonoBehaviour
         if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.Return))
         {
             userEnterText = myInputField.text;
+            astManager.GetComponent<ObjectPooling>().CompareAnswers(userEnterText);
         }
     }
-    int CompareResults(string text)
+    /*int CompareResults(string text)
     {
         int temp = -1;
-        for(int i = 0; i < equBank.GetNumOfEquations; i++)
+
+        for(int i = 0; i < astManager.GetComponent<ObjectPooling>().pooledObjects.Count; i++)
         {
-            if (text == equBank.GetEquations(i))
+            if(text == astManager.GetComponent<ObjectPooling>().pooledObjects[i].GetComponent<AsteroidID>().answer.ToString())
             {
-                temp = i;
+                temp = astManager.GetComponent<ObjectPooling>().pooledObjects[i].GetComponent<AsteroidID>().ID;
+                break;
             }
         }
+
         return temp;
         
-    }
+    }*/
+
     public int ListEquations()
     {
         //List<string> usedEquations = new List<string>(equations);
