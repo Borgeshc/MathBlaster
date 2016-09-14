@@ -1,72 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
-
-public class Score : MonoBehaviour {
+using UnityEngine.UI;
 
 
-    //integers
-    private int targetScore;
-    [HideInInspector]
+public class Score : MonoBehaviour
+{
+    public Text scoreText;
+    public Text lifeText;
+    public Text correctAnswer;
+    public GameObject chatBubble;
     public int score;
-   // [HideInInspector]
-  //  public int vipScore;
-    public int life;
-
 	private int combo;
-	private float bonusTime;
+    private GameObject player;
+    private float health;
 
-
-	//floats
-    private float wait;
-
-
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	public void Update ()
+    void Start()
     {
-         
-        //once target score has been achieved, the next level will begin
-    if (score >= targetScore)
-        {
-            //waiting five seconds before loading
-            wait = Time.time + 5;
-//            if (Time.time > wait)
-//             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
-        //once lives reaches 0, the game will end in defeat
-        if (life <= 0)
-        {
-            //waiting five seconds before loading
-            wait = Time.time + 5;
-//            if (Time.time > wait)
-//                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-	
-	}
-
+        player = GameObject.Find("Player");
+        health = player.GetComponent<Health>().health;
+        lifeText.text = "Health: " + health;
+    }
 	public void AddScore ()
 	{
-		score += 5 + combo;
+		score += 1 + combo;
 		combo += 1;
-		if (Time.time > bonusTime)
-		bonusTime = Time.time + 3;
 
+        scoreText.text = "Score: " + score;
 	}
-
-	public void LoseLife ()
+	public void LoseLife (GameObject other)
 	{
-		life -= 1;
-		combo = 0;
-		bonusTime = 0;
+        health = player.GetComponent<Health>().health;
+        combo = 0;
+        lifeText.text = "Health: " + health;
+        StartCoroutine(AnswerDisplay(other));
 	}
 
-	void OnGUI ()
-	{
-	}
+    IEnumerator AnswerDisplay(GameObject other)
+    {
+        chatBubble.SetActive(true);
+        correctAnswer.enabled = true;
+        correctAnswer.text = "Correct Answer: " + other.GetComponent<AsteroidID>().answer;
+        yield return new WaitForSeconds(2);
+        chatBubble.SetActive(false);
+    }
 }

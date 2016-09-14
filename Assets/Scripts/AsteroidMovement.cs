@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
 using UnityEngine.UI;
 
 
@@ -63,7 +61,6 @@ public class AsteroidMovement : MonoBehaviour
 
             objectPooling.objActive = false;
             objectPooling.objectCount--;    //Reduces the count of active objects in the scene.
-            Camera.main.GetComponent<Score>().AddScore();
             gameObject.SetActive(false);    //Turns off the gameobject.
         }
     }
@@ -86,6 +83,7 @@ public class AsteroidMovement : MonoBehaviour
             Destroy(other.gameObject);
             objectPooling.objectCount--;
             objectPooling.objActive = false;
+            Camera.main.GetComponent<Score>().AddScore();
             player.GetComponent<Shooting>().shot = false;
             gameObject.SetActive(false);
         }

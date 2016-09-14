@@ -1,12 +1,7 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 
 public class EquationWindow : MonoBehaviour
 {

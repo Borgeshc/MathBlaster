@@ -81,12 +81,13 @@
     <Compile Include="Assets\Scripts\AsteroidID.cs" />
     <Compile Include="Assets\Scripts\AsteroidMovement.cs" />
     <Compile Include="Assets\Scripts\DestroySelf.cs" />
+    <Compile Include="Assets\Scripts\DifficultyHandler.cs" />
     <Compile Include="Assets\Scripts\EquationBank.cs" />
     <Compile Include="Assets\Scripts\EquationUnit.cs" />
     <Compile Include="Assets\Scripts\EquationWindow.cs" />
+    <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\MissileMovement.cs" />
     <Compile Include="Assets\Scripts\ObjectPooling.cs" />
-    <Compile Include="Assets\Scripts\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\ShipMovement.cs" />
     <Compile Include="Assets\Scripts\Shooting.cs" />

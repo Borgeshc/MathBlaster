@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class SceneManager : MonoBehaviour
+public class DifficultyHandler : MonoBehaviour
 {
     //Stores the difficulty into the Player Prefs throughout the screens
     int difficulty;

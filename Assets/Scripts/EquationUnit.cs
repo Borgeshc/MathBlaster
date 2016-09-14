@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEditor;
-using UnityEngine;
-
-public class EquationUnit
+﻿public class EquationUnit
 {
     private string m_Equations;
     private string m_EquationResult;
