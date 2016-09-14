@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine.UI;
 
 
 public class AsteroidMovement : MonoBehaviour
@@ -18,6 +19,7 @@ public class AsteroidMovement : MonoBehaviour
     GameObject player;      //Reference to the player.
     ObjectPooling objectPooling;    //Reference to the pooling script
     GameObject clone;   //Clone to set the explosion to.
+    EquationWindow myWindow;
     void Start()
     {
         asteroidManager = GameObject.Find("AsteroidManager");   //Reference the Asteroid Manager gameobject.
@@ -27,7 +29,7 @@ public class AsteroidMovement : MonoBehaviour
         windowSize = new Rect(0, 0, Screen.width, Screen.height);
         //Spawn points start outside the screen, so starts out as false
         insideRect = false;
-
+        myWindow = Camera.main.GetComponent<EquationWindow>();
     }
 	void Update ()
     {
@@ -36,7 +38,7 @@ public class AsteroidMovement : MonoBehaviour
         if (!insideRect && windowSize.Contains(transform.position))
         {
             insideRect = true;
-            //WriteEquation();
+            WriteEquationOnAsteroid();
         }
         else if (insideRect && !windowSize.Contains(transform.position))
         {
@@ -61,10 +63,11 @@ public class AsteroidMovement : MonoBehaviour
             gameObject.SetActive(false);    //Turns off the gameobject.
         }
     }
-    void WriteEquation()
+    void WriteEquationOnAsteroid()
     {
         equationIndex = Camera.main.GetComponent<EquationWindow>().ListEquations();
-        gameObject.GetComponent<GUIText>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
+        gameObject.GetComponentInChildren<Text>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
+        gameObject.GetComponent<AsteroidID>().answer = int.Parse(myWindow.equBank.GetEquationResult(equationIndex));
     }
     public void QuadNum(int quadNum)
     {

@@ -37,12 +37,13 @@ public class ObjectPooling : MonoBehaviour
 
     GameObject spawnPoint; //The point where the object will spawn.
     public int objectCount;       //Keeps track of how many objects are active in the scnene.
+    int idCounter; //Increments the id for the meteors.
 
     // Use this for initialization
     void Start()
     {
         pooledObjects = new List<GameObject>(); //Populates the list with the instantiated gameobjects.
-
+        
         SetSpawnPoints();
         for (int i = 0; i < pooledAmount; i++)  //Instantiates as many objects as you specified.
         {
@@ -57,6 +58,7 @@ public class ObjectPooling : MonoBehaviour
         {// && quad1InUse != true || quad2InUse != true || quad3InUse != true || quad4InUse != true
             ActivateObject();                   //Spawns the object.
         }
+        arrayObjects = pooledObjects.ToArray();
     }
 
     void SetSpawnPoints()
@@ -120,7 +122,8 @@ public class ObjectPooling : MonoBehaviour
         obj.transform.rotation = transform.rotation;
         obj.SetActive(true);
         objectCount++;                                             //Increases the count of objects in the scene.
-        
+        obj.GetComponent<AsteroidID>().ID = idCounter++;
+
     }
 
     void ChooseQuad()
@@ -155,7 +158,7 @@ public class ObjectPooling : MonoBehaviour
     public bool CompareAnswers(string answer)
     {
         bool correct = false;
-        for (int i = 0; i < pooledObjects.Count; i++)
+        for (int i = 0; i < objectCount; i++)
         {
             if (answer == arrayObjects[i].GetComponent<AsteroidID>().answer.ToString())
             {
