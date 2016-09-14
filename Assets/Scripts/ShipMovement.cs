@@ -17,8 +17,27 @@ public class ShipMovement : MonoBehaviour
     {
         if (targetFound)
         {
-            Vector2.MoveTowards(transform.position, new Vector2(target.transform.position.y, transform.position.x), speed * Time.deltaTime);
+            StartMyCoroutine();
             targetFound = false;
         }
 	}
+
+    void StartMyCoroutine()
+    {
+        StartCoroutine(WaitUntilFinished());
+    }
+
+    IEnumerator WaitUntilFinished()
+    {
+        yield return new WaitUntil(MoveTo);
+    }
+    bool MoveTo()
+    {
+        transform.position = Vector2.Lerp(transform.position, new Vector2(transform.position.x, target.transform.position.y), speed * Time.deltaTime);
+        if (transform.position.y == target.transform.position.y)
+        {
+            return true;
+        }
+        return false;
+    }
 }

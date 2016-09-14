@@ -38,6 +38,8 @@ public class AsteroidMovement : MonoBehaviour
         if (!insideRect && windowSize.Contains(transform.position))
         {
             insideRect = true;
+            player.GetComponent<ShipMovement>().target = transform.gameObject;
+            player.GetComponent<ShipMovement>().targetFound = true;
             WriteEquationOnAsteroid();
         }
         else if (insideRect && !windowSize.Contains(transform.position))
@@ -58,6 +60,8 @@ public class AsteroidMovement : MonoBehaviour
                     objectPooling.quad4InUse = false;
                     break;
             }
+
+            objectPooling.objActive = false;
             objectPooling.objectCount--;    //Reduces the count of active objects in the scene.
             Camera.main.GetComponent<Score>().AddScore();
             gameObject.SetActive(false);    //Turns off the gameobject.
@@ -80,6 +84,8 @@ public class AsteroidMovement : MonoBehaviour
             clone = Instantiate(explosion, GetComponent<RectTransform>().position, GetComponent<RectTransform>().rotation) as GameObject; //Spawn the explosion prefab at the meteor.
             clone.transform.SetParent(player.GetComponent<Shooting>().canvas.transform);    //Child the explosion to the canvas so that it gets rendered.
             Destroy(other.gameObject);
+            objectPooling.objectCount--;
+            objectPooling.objActive = false;
             gameObject.SetActive(false);
         }
     }

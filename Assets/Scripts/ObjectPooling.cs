@@ -8,7 +8,6 @@ public class ObjectPooling : MonoBehaviour
     public GameObject pooledObject; //The object you want to pool
     public int pooledAmount;        //The amount of objects you want to pool.
     public bool willGrow = true;    //Allows the script to instantiate more objects if needed.
-    public float spawnFreq;         //The spawn frequency of the object.
     float lastSpawn;                //The time that the object spawned last.
 
     int quad1;  //Used to split the screen into fourths.
@@ -35,15 +34,20 @@ public class ObjectPooling : MonoBehaviour
     //[HideInInspector]
     public bool quad4InUse;
 
+    ShipMovement shipMovement;
+
     GameObject player;     //The player ship
     GameObject spawnPoint; //The point where the object will spawn.
     public int objectCount;       //Keeps track of how many objects are active in the scnene.
     int idCounter; //Increments the id for the meteors.
-
+    [HideInInspector]
+    public bool objActive;
+    bool spawning;
     // Use this for initialization
     void Start()
     {
         player = GameObject.Find("Player");
+        shipMovement = player.GetComponent<ShipMovement>();
         pooledObjects = new List<GameObject>(); //Populates the list with the instantiated gameobjects.
         
         SetSpawnPoints();
@@ -51,13 +55,13 @@ public class ObjectPooling : MonoBehaviour
         {
             StartCoroutine(InstantiatePool());
         }
-
-        ActivateObject(); //Spawns a gameobject at the start.
     }
     void Update()
     {
-        if (Time.time > lastSpawn + spawnFreq && objectCount < 3)  //Makes sure that objects spawn according to the spawn frequency chosen.
+        //Time.time > lastSpawn + spawnFreq && objectCount < 3
+        if (!objActive && objectCount < 1)  //Makes sure that objects spawn according to the spawn frequency chosen.
         {// && quad1InUse != true || quad2InUse != true || quad3InUse != true || quad4InUse != true
+            objActive = true;
             ActivateObject();                   //Spawns the object.
         }
         arrayObjects = pooledObjects.ToArray();
@@ -108,7 +112,7 @@ public class ObjectPooling : MonoBehaviour
 
     void ActivateObject()   //Turns on the gameobject.
     {
-        lastSpawn = Time.time;                      //A timestamp of when the object spawned.
+       // lastSpawn = Time.time;                      //A timestamp of when the object spawned.
         GameObject obj = GetPooledObject();         //Gets a gameobject from the list
 
         if (obj == null)
@@ -125,7 +129,6 @@ public class ObjectPooling : MonoBehaviour
         obj.SetActive(true);
         objectCount++;                                             //Increases the count of objects in the scene.
         obj.GetComponent<AsteroidID>().ID = idCounter++;
-
     }
 
     void ChooseQuad()
@@ -165,10 +168,8 @@ public class ObjectPooling : MonoBehaviour
             if (answer == arrayObjects[i].GetComponent<AsteroidID>().answer.ToString())
             {
                 correct = true;
-                print( "Entered answer is: "+ answer);
-                print("Correct answer is: " + arrayObjects[i].GetComponent<AsteroidID>().answer.ToString());
-
-                player.GetComponent<ShipMovement>().targetFound = true;
+                player.GetComponent<Shooting>().Shoot();
+                Camera.main.GetComponent<EquationWindow>().ClearInputField();
                 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
                  *                                                                         *
                  *    This is where Hector will destroy the asteroid using this algorith   *
@@ -182,8 +183,6 @@ public class ObjectPooling : MonoBehaviour
             else
             {
                 correct = false;
-                print("Entered answer is: " + answer);
-                print("Correct answer is: " + arrayObjects[i].GetComponent<AsteroidID>().answer.ToString());
             }
         }
         return correct;
