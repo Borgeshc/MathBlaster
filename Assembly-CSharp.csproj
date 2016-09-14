@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\AsteroidMovement.cs" />
      <Compile Include="Assets\ChangeScene.cs" />
+     <Compile Include="Assets\DisplayTimeAndscore.cs" />
      <Compile Include="Assets\QuitApplication.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Users/Owner/Desktop/GSDB 2.6.16/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
