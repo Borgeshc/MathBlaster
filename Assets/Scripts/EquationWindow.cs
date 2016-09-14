@@ -10,7 +10,8 @@ using System.Reflection;
 
 public class EquationWindow : MonoBehaviour
 {
-    EquationBank equBank;
+    public EquationBank equBank;
+    ObjectPooling myPool;
 
     string[] equations;
 
@@ -18,35 +19,27 @@ public class EquationWindow : MonoBehaviour
     public static List<string> EquationResult;
     List<string> usedEquations;
     int indexedEquation;
-    public int numOfAsteroids = 4;
-
-    //private static StreamReader myStreamReader;
-    //private static StreamWriter myStreamWriter;
 
     public InputField myInputField;
     private object EventSystemManager;
+    GameObject astManager;
+    int asteroidCount;
 
     void Awake()
     {
         equBank = new EquationBank();
 
         //Populate the bank of Equations from the .txt file
-        //bool success;
-        //success = equBank.PopulateList();
+        bool success;
+        success = equBank.PopulateList();
 
         equations = new string[equBank.GetNumOfEquations];
 
-        /*if (success)
-        {
-            for (int i = 0; i < equBank.GetNumOfEquations; i++)
-            {
-                string shortEquations = equBank.GetEquations(i);
-            }
-        }*/
     }
     void Start()
     {
         usedEquations = new List<string>(equations);
+        astManager = GameObject.Find("AsteroidManager");
     }
 
     void OnGUI()
@@ -54,17 +47,30 @@ public class EquationWindow : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(myInputField.gameObject, null);
         myInputField.OnPointerClick(new PointerEventData(EventSystem.current));
 
+        string userEnterText;
+
         if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.Return))
         {
-            Debug.Log("Test the Text entered : " + myInputField.text);
-            for(int i = 0; i < equBank.GetNumOfEquations; i++)
+            userEnterText = myInputField.text;
+            astManager.GetComponent<ObjectPooling>().CompareAnswers(userEnterText);
+        }
+    }
+    /*int CompareResults(string text)
+    {
+        int temp = -1;
+
+        for(int i = 0; i < astManager.GetComponent<ObjectPooling>().pooledObjects.Count; i++)
+        {
+            if(text == astManager.GetComponent<ObjectPooling>().pooledObjects[i].GetComponent<AsteroidID>().answer.ToString())
             {
-                Debug.Log("Equation is: " + equBank.GetEquations(i));
-                Debug.Log("Equation Result is: " + equBank.GetEquationResult(i));
+                temp = astManager.GetComponent<ObjectPooling>().pooledObjects[i].GetComponent<AsteroidID>().ID;
+                break;
             }
         }
+
+        return temp;
         
-    }
+    }*/
 
     public int ListEquations()
     {
