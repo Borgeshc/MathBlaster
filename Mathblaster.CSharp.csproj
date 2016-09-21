@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\ShipMovement.cs" />
     <Compile Include="Assets\Scripts\Shooting.cs" />
+    <Compile Include="Assets\Scripts\WaveManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Equations1.txt" />
