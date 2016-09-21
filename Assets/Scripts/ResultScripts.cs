@@ -38,10 +38,7 @@ public class ResultScripts : MonoBehaviour {
 		resultCorrect.text = "Correct: " + wave; 
 		resultMissed.text = "Missed: " + wave; 
 		resultEquations.text = "Total: " + wave; 
-		resultCombo.text = "Combo: " + scoreManager.combo; 
-
-
-
+		resultCombo.text = "Combo: " + scoreManager.maxCombo; 
 		anim.SetTrigger ("SetResults");
 	}
 	

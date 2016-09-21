@@ -14,11 +14,12 @@ public class Score : MonoBehaviour
     public Text correctAnswer;
     public GameObject chatBubble;
     public int score;
-	public int combo;
-    private GameObject player;
-    public int health;
+	public int maxCombo;
+	public int health;
 	public GameObject results;
 
+	private GameObject player;
+	private int combo;
     void Start()
     {
         player = GameObject.Find("Player"); //finding the player and assigigning the GameObject "Player"
@@ -26,13 +27,18 @@ public class Score : MonoBehaviour
         lifeText.text = "Health: " + health; //displaying the health
 		lifeText.text = "Wave: " + wave; //displaying the health
     }
-		
+
+	void Update()
+	{
+		print(combo);
+	}
 		
 	public void AddScore ()
 	{
 		score += 1 + combo;  //adding 1 additional point per combo
 		combo += 1; //and adding +1 to combo after each correct answer
-
+		if (maxCombo < combo)
+			maxCombo += 1;
         scoreText.text = "Score: " + score; //displaying the score
 	}
 	public void LoseLife (GameObject other)
@@ -64,7 +70,7 @@ public class Score : MonoBehaviour
 		results.SetActive (true);
 		print ("end game");
 		//Ending the game after displaying the correct answer
-		Destroy (player.gameObject);
+//		Destroy (player.gameObject);
 		yield return new WaitForSeconds(15);
 		SceneManager.LoadScene(loseScene);
 	}
