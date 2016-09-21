@@ -95,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Equations1.txt" />
+    <None Include="Assets\Scripts\Equations2.txt" />
+    <None Include="Assets\Scripts\Equations3.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
