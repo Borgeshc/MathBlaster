@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                   *
+ *   This class will only set the difficulty upon    *
+ *   the PlayerPrefs which are assigned on the menu  *
+ *   at the start of the game.                       *
+ *                                                   *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 public class GameManager : MonoBehaviour
 {
     public void StartEasy()

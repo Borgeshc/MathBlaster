@@ -8,91 +8,68 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                       *
+ *   This class is what will handle the actual OnGUI()   *
+ *   using the InputField.                               *
+ *                                                       *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 public class EquationWindow : MonoBehaviour
 {
-    public EquationBank equBank;
-    ObjectPooling myPool;
+    public EquationBank equBank;                                    //Name of the instance of the bank. The ONLY instance NEEDED
+    ObjectPooling myPool;                                           //Used in reference for asteroid movement and ID
 
-    string[] equations;
+    string[] equations;                                             //Used to get a list of the equations in total. Only the length here is used
 
-    public static List<string> Equations;
-    public static List<string> EquationResult;
-    List<string> usedEquations;
-    int indexedEquation;
+    //public static List<string> Equations;
+    //public static List<string> EquationResult;
+    int indexedEquation;                                            //This is the random number generator that tells us which equation to pull
 
-    public InputField myInputField;
-    private object EventSystemManager;
-    GameObject astManager;
-    int asteroidCount;
+    public InputField myInputField;                                 //This is the field where players input their answers
+    private object EventSystemManager;                              //Used to set mouse focus to the text field from the start
+    GameObject astManager;                                          //Grabs the reference of the Asteroid Manager object
 
     void Awake()
     {
-        equBank = new EquationBank();
-
-        //Populate the bank of Equations from the .txt file
-        bool success;
+        equBank = new EquationBank();                               //Actually make the Bank here
+        
+        bool success;                                               //Populate the bank of Equations from the .txt file
         success = equBank.PopulateList();
 
-        equations = new string[equBank.GetNumOfEquations];
+        equations = new string[equBank.GetNumOfEquations];          //Used to get the maximum index of equations
 
     }
     void Start()
     {
-        usedEquations = new List<string>(equations);
-        astManager = GameObject.Find("AsteroidManager");
+        astManager = GameObject.Find("AsteroidManager");            //Finds the Asteroid Manager
     }
 
     void OnGUI()
     {
-        EventSystem.current.SetSelectedGameObject(myInputField.gameObject, null);
-        myInputField.OnPointerClick(new PointerEventData(EventSystem.current));
+        EventSystem.current.SetSelectedGameObject(myInputField.gameObject, null);           //Sets the focus of the mouse to the input field
+        myInputField.OnPointerClick(new PointerEventData(EventSystem.current));             //Resets upon clicking elsewhere
 
-        int temp = PlayerPrefs.GetInt("Difficulty");
+        int temp = PlayerPrefs.GetInt("Difficulty");                                        //Testing purposes to check if PlayerPrefs are set correctly
         print(temp);
 
-        string userEnterText;
+        string userEnterText;                                                                           //Obtain the players answer
 
-        if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.Return))
+        if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.KeypadEnter))        //If statement checking if focus is on the input field, and the text isn't null, upon Keypad enter
         {
-            userEnterText = myInputField.text;
-            astManager.GetComponent<ObjectPooling>().CompareAnswers(userEnterText);
+            userEnterText = myInputField.text;                                                              //Sets the players answer
+            astManager.GetComponent<ObjectPooling>().CompareAnswers(userEnterText);                         //Compares the answers in the ObjectPooling class
         }
     }
-    /*int CompareResults(string text)
-    {
-        int temp = -1;
-
-        for(int i = 0; i < astManager.GetComponent<ObjectPooling>().pooledObjects.Count; i++)
-        {
-            if(text == astManager.GetComponent<ObjectPooling>().pooledObjects[i].GetComponent<AsteroidID>().answer.ToString())
-            {
-                temp = astManager.GetComponent<ObjectPooling>().pooledObjects[i].GetComponent<AsteroidID>().ID;
-                break;
-            }
-        }
-
-        return temp;
-        
-    }*/
 
     public int ListEquations()
     {
-        //List<string> usedEquations = new List<string>(equations);
-        int indexedEquation = UnityEngine.Random.Range(0, equations.Length);
+        int indexedEquation = UnityEngine.Random.Range(0, equations.Length);                                //RNG
 
-        if (!usedEquations.Contains(equBank.GetEquations(indexedEquation)))
-        {
-            usedEquations.Add(equBank.GetEquations(indexedEquation));
-        }
         return indexedEquation;
     }
-    public string WriteEquation(int index)
+    public string WriteEquation(int index)                                                                  //Takes the RNG and retrieves the Equation
     {
         return equBank.GetEquations(index);
     }
-    public void UnlistEquations(int equationInt)
-    {
-        usedEquations.Remove(equBank.GetEquations(equationInt));
-    }
-
 }

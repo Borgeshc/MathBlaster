@@ -5,6 +5,12 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                           *
+ *   This class is simple a large property block and serves  *
+ *   no other purpose.                                       *
+ *                                                           *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 public class EquationUnit
 {
     private string m_Equations;
