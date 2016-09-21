@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    public string loseScene;
-    public float health;
+   // public string loseScene;
+    public int health;
     Score score;
 
     void Start()
@@ -19,10 +19,10 @@ public class Health : MonoBehaviour
         {
             health--;
             score.LoseLife(other.gameObject);
-            if (health < 0)
-            {
-                SceneManager.LoadScene(loseScene);
-            }
+//            if (health < 0)
+//            {
+//                SceneManager.LoadScene(loseScene);
+//            }
         }
     }
 }

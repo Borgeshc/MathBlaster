@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EquationBank.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Score.cs" Line="25" Column="44" />
+      <File FileName="Assets\Scripts\ResultScripts.cs" Line="35" Column="38" />
+      <File FileName="Assets\Scripts\Health.cs" Line="11" Column="17" />
+      <File FileName="Assets\Scripts\EquationBank.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EquationWindow.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
