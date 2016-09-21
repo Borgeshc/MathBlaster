@@ -32,16 +32,18 @@ public class EquationBank
         bool success = true;
         string path = "";
 
+        int temp = PlayerPrefs.GetInt("Difficulty");
+
         //Requires the PlayerPrefs int for difficulty
-        if (CheckDifficulty() == 0)
+        if (temp == 0)
         {
             path = "Assets/Scripts/Equations1.txt";
         }
-        else if (CheckDifficulty() == 1)
+        else if (temp == 1)
         {
             path = "Assets/Scripts/Equations2.txt";
         }
-        else if (CheckDifficulty() == 2)
+        else if (temp == 2)
         {
             path = "Assets/Scripts/Equations3.txt";
         }

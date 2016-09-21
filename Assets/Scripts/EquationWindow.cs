@@ -47,6 +47,9 @@ public class EquationWindow : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(myInputField.gameObject, null);
         myInputField.OnPointerClick(new PointerEventData(EventSystem.current));
 
+        int temp = PlayerPrefs.GetInt("Difficulty");
+        print(temp);
+
         string userEnterText;
 
         if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.Return))
