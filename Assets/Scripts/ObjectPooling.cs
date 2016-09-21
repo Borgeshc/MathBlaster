@@ -33,6 +33,9 @@ public class ObjectPooling : MonoBehaviour
     //[HideInInspector]
     public bool quad4InUse;
 
+    [HideInInspector]
+    public bool stopSpawning;
+
     ShipMovement shipMovement;
 
     GameObject player;     //The player ship
@@ -58,7 +61,7 @@ public class ObjectPooling : MonoBehaviour
     void Update()
     {
         //Time.time > lastSpawn + spawnFreq && objectCount < 3
-        if (!objActive && objectCount < 1)  //Makes sure that objects spawn according to the spawn frequency chosen.
+        if (!objActive && objectCount < 1 && !stopSpawning)  //Makes sure that objects spawn according to the spawn frequency chosen.
         {// && quad1InUse != true || quad2InUse != true || quad3InUse != true || quad4InUse != true
             objActive = true;
             ActivateObject();                   //Spawns the object.

@@ -58,7 +58,6 @@ public class AsteroidMovement : MonoBehaviour
                     objectPooling.quad4InUse = false;
                     break;
             }
-
             objectPooling.objActive = false;
             objectPooling.objectCount--;    //Reduces the count of active objects in the scene.
             gameObject.SetActive(false);    //Turns off the gameobject.
@@ -83,9 +82,15 @@ public class AsteroidMovement : MonoBehaviour
             Destroy(other.gameObject);
             objectPooling.objectCount--;
             objectPooling.objActive = false;
+            Camera.main.GetComponent<WaveManager>().AsteroidDestroyed();
             Camera.main.GetComponent<Score>().AddScore();
+            print("Asteroid destroyed by a missile!");
             player.GetComponent<Shooting>().shot = false;
             gameObject.SetActive(false);
+        }
+        if(other.name == "EndOfScreen")
+        {
+            Camera.main.GetComponent<WaveManager>().AsteroidDestroyed();
         }
     }
 }
