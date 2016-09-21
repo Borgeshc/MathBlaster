@@ -24,7 +24,7 @@ public class AsteroidMovement : MonoBehaviour
         objectPooling = asteroidManager.GetComponent<ObjectPooling>();
         player = GameObject.Find("Player");
         //Creates a rectangle that identifies the screen height / width
-        windowSize = new Rect(0, 0, Screen.width, Screen.height);
+        windowSize = new Rect(0, 0, Screen.width + (Screen.width / 9), Screen.height);
         //Spawn points start outside the screen, so starts out as false
         insideRect = false;
         myWindow = Camera.main.GetComponent<EquationWindow>();
