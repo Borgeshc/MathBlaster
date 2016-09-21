@@ -92,5 +92,14 @@ public class AsteroidMovement : MonoBehaviour
         {
             Camera.main.GetComponent<WaveManager>().AsteroidDestroyed();
         }
+        if (other.name == "Player")
+        {
+            clone = Instantiate(explosion, GetComponent<RectTransform>().position, GetComponent<RectTransform>().rotation) as GameObject; //Spawn the explosion prefab at the meteor.
+            clone.transform.SetParent(player.GetComponent<Shooting>().canvas.transform);    //Child the explosion to the canvas so that it gets rendered.
+            objectPooling.objectCount--;                                        //Subtract the count of asteroids.
+            objectPooling.objActive = false;                                    //Tell the pooling scrip that the object has been disabled.
+            Camera.main.GetComponent<WaveManager>().AsteroidDestroyed();        //Tell the wave manager that an asteroid was destroyed.
+            gameObject.SetActive(false);                                        //Turn the asteroid off.
+        }
     }
 }
