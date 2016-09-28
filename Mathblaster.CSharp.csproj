@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\MissileMovement.cs" />
     <Compile Include="Assets\Scripts\ObjectPooling.cs" />
     <Compile Include="Assets\Scripts\QuitApplication.cs" />
+    <Compile Include="Assets\Scripts\ResultScripts.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\ShipMovement.cs" />
     <Compile Include="Assets\Scripts\Shooting.cs" />

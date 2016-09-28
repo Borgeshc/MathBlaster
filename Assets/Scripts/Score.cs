@@ -12,7 +12,7 @@ public class Score : MonoBehaviour
     public int score;
 	private int combo;
     private GameObject player;
-    private float health;
+    public float health;
 
     void Start()
     {
