@@ -27,7 +27,6 @@ public class WaveManager : MonoBehaviour
     public void AsteroidDestroyed()
     {
         destroyedAsteroids++;                      //Adds to the number of destroyed asteroids.
-        print(destroyedAsteroids + " asteroids destroyed!");
 
         if (destroyedAsteroids == waveComplete)    //if the number of destroyed asteroid reaches the wave complete number
         {

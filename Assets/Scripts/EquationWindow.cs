@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-
 public class EquationWindow : MonoBehaviour
 {
     public EquationBank equBank;
@@ -20,6 +19,7 @@ public class EquationWindow : MonoBehaviour
     GameObject astManager;
     int asteroidCount;
 
+    
     void Awake()
     {
         equBank = new EquationBank();
@@ -44,7 +44,7 @@ public class EquationWindow : MonoBehaviour
 
         string userEnterText;
 
-        if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.KeypadEnter))
+        if (myInputField.isFocused && myInputField.text != null && Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Return))
         {
             userEnterText = myInputField.text;
             astManager.GetComponent<ObjectPooling>().CompareAnswers(userEnterText);

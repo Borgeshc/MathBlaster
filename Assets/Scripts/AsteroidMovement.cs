@@ -84,7 +84,6 @@ public class AsteroidMovement : MonoBehaviour
             objectPooling.objActive = false;
             Camera.main.GetComponent<WaveManager>().AsteroidDestroyed();
             Camera.main.GetComponent<Score>().AddScore();
-            print("Asteroid destroyed by a missile!");
             player.GetComponent<Shooting>().shot = false;
             gameObject.SetActive(false);
         }

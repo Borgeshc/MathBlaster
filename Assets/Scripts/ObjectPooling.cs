@@ -45,7 +45,6 @@ public class ObjectPooling : MonoBehaviour
     [HideInInspector]
     public bool objActive;
     bool spawning;
-    // Use this for initialization
     void Start()
     {
         player = GameObject.Find("Player");
@@ -60,9 +59,8 @@ public class ObjectPooling : MonoBehaviour
     }
     void Update()
     {
-        //Time.time > lastSpawn + spawnFreq && objectCount < 3
         if (!objActive && objectCount < 1 && !stopSpawning)  //Makes sure that objects spawn according to the spawn frequency chosen.
-        {// && quad1InUse != true || quad2InUse != true || quad3InUse != true || quad4InUse != true
+        {
             objActive = true;
             ActivateObject();                   //Spawns the object.
         }
@@ -113,8 +111,7 @@ public class ObjectPooling : MonoBehaviour
     }
 
     void ActivateObject()   //Turns on the gameobject.
-    {
-       // lastSpawn = Time.time;                      //A timestamp of when the object spawned.
+    { 
         GameObject obj = GetPooledObject();         //Gets a gameobject from the list
 
         if (obj == null)
@@ -173,14 +170,6 @@ public class ObjectPooling : MonoBehaviour
                 player.GetComponent<Shooting>().Shoot();                            //Shoot the missile
                 Camera.main.GetComponent<EquationWindow>().ClearInputField();       //Clears the input field
                 arrayObjects[i].GetComponent<AsteroidID>().answer = -100000;        //Temporarily delete answer
-                /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-                 *                                                                         *
-                 *    This is where Hector will destroy the asteroid using this algorith   *
-                 *                                                                         *
-                 *    arrayObjects[i] will be the asteroid to destroy                      *
-                 *                                                                         *
-                 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
                 break;
             }
             else
@@ -192,15 +181,6 @@ public class ObjectPooling : MonoBehaviour
     }
     public void ResetTransformAsteroid(int index)
     {
-        //pooledObjects.IndexOf(pooledObjects, index);
         pooledObjects.IndexOf(pooledObject, index);
     }
 }
-/*
- * object to pool
- * amount of objects to pool
- * list to hold pooled objects
- * current pooled object
- * bool to allow instantiation of objects when pool is empty
- * 
-*/
