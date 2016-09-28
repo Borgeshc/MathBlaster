@@ -15,9 +15,9 @@ public class DifficultyHandler : MonoBehaviour
         PlayerPrefs.SetInt("Difficulty", 1);
         return;
     }
-    //public void Hard()
-    //{
-    //    PlayerPrefs.SetInt("Difficulty", 2);
-    //    return;
-    //}
+    public void Hard()
+    {
+        PlayerPrefs.SetInt("Difficulty", 2);
+        return;
+    }
 }

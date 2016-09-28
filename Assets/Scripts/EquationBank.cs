@@ -42,10 +42,10 @@ public class EquationBank
         {
             path = "Assets/Scripts/Equations2.txt";
         }
-        //else if (temp == 2)                                                 //Hard Mode
-        //{
-        //    path = "Assets/Scripts/Equations3.txt";
-        //}
+        else if (temp == 2)                                                 //Hard Mode
+        {
+            path = "Assets/Scripts/Equations3.txt";
+        }
         //else if (temp == 3)                                                 //Insane Mode
         //{
         //    path = "Assets/Scripts/Equations4.txt";

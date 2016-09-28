@@ -28,6 +28,21 @@ public class AsteroidMovement : MonoBehaviour
         //Spawn points start outside the screen, so starts out as false
         insideRect = false;
         myWindow = Camera.main.GetComponent<EquationWindow>();
+
+        switch (PlayerPrefs.GetInt("Difficulty"))
+        {
+            case 0:
+                speed = 125;
+                break;
+
+            case 1:
+                speed *= 0.5f;
+                break;
+
+            case 2:
+                speed *= 0.25f;
+                break;
+        }
     }
 	void Update ()
     {

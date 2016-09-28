@@ -78,10 +78,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ClearPrefs.cs" />
     <Compile Include="Assets\Scripts\AsteroidID.cs" />
     <Compile Include="Assets\Scripts\AsteroidMovement.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
+    <Compile Include="Assets\Scripts\ClearPrefs.cs" />
     <Compile Include="Assets\Scripts\DestroySelf.cs" />
     <Compile Include="Assets\Scripts\DifficultyHandler.cs" />
     <Compile Include="Assets\Scripts\EquationBank.cs" />
@@ -101,6 +101,7 @@
   <ItemGroup>
     <None Include="Assets\Scripts\Equations1.txt" />
     <None Include="Assets\Scripts\Equations2.txt" />
+    <None Include="Assets\Scripts\Equations3.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
