@@ -78,7 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MainMenu.cs" />
+    <Compile Include="Assets\ClearPrefs.cs" />
     <Compile Include="Assets\Scripts\AsteroidID.cs" />
     <Compile Include="Assets\Scripts\AsteroidMovement.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\EquationUnit.cs" />
     <Compile Include="Assets\Scripts\EquationWindow.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\MissileMovement.cs" />
     <Compile Include="Assets\Scripts\ObjectPooling.cs" />
     <Compile Include="Assets\Scripts\QuitApplication.cs" />

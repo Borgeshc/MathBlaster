@@ -18,7 +18,7 @@ public class AsteroidMovement : MonoBehaviour
     ObjectPooling objectPooling;    //Reference to the pooling script
     GameObject clone;   //Clone to set the explosion to.
     EquationWindow myWindow;
-    void Start()
+    void Awake()
     {
         asteroidManager = GameObject.Find("AsteroidManager");   //Reference the Asteroid Manager gameobject.
         objectPooling = asteroidManager.GetComponent<ObjectPooling>();
@@ -65,6 +65,7 @@ public class AsteroidMovement : MonoBehaviour
     }
     void WriteEquationOnAsteroid()
     {
+        objectPooling.AsteroidCount();
         equationIndex = Camera.main.GetComponent<EquationWindow>().ListEquations();
         gameObject.GetComponentInChildren<Text>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
         gameObject.GetComponent<AsteroidID>().answer = int.Parse(myWindow.equBank.GetEquationResult(equationIndex));

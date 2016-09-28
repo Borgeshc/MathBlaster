@@ -9,6 +9,8 @@ public class WaveManager : MonoBehaviour
 
     [HideInInspector]
     public int destroyedAsteroids;              //This keeps track of the destroyed asteroid count
+    [HideInInspector]
+    public int waveCount;
 
     [Tooltip("How many asteroids need to be destroyed before Wave is comepleted.")]   //number of destroyed asteroids till complete
     int waveComplete = 2;
@@ -43,6 +45,7 @@ public class WaveManager : MonoBehaviour
         {
             go.GetComponent<AsteroidMovement>().speed = go.GetComponent<AsteroidMovement>().speed + speedIncreaseAmount;
         }
+        waveCount++;
         objectPooling.stopSpawning = true;      //Stops the manager from spawning
         waveCompleteImage.SetActive(true);                                      //turns on the comepleted wave image
         yield return new WaitForSeconds(3);                                     //waits for 5 seconds

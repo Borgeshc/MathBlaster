@@ -44,6 +44,10 @@ public class ObjectPooling : MonoBehaviour
     int idCounter; //Increments the id for the meteors.
     [HideInInspector]
     public bool objActive;
+    [HideInInspector]
+    public int correctAnswers;
+    [HideInInspector]
+    public int totalQuestions;
     bool spawning;
     void Start()
     {
@@ -123,7 +127,6 @@ public class ObjectPooling : MonoBehaviour
 
         obj.transform.position = spawnPoint.transform.position;    //Spawns the gameobject in the lane.
         obj.GetComponent<AsteroidMovement>().QuadNum(quadNum);     //Tells the gameobject which lane it is in.
-
         obj.transform.rotation = transform.rotation;
         obj.SetActive(true);
         objectCount++;                                             //Increases the count of objects in the scene.
@@ -167,6 +170,7 @@ public class ObjectPooling : MonoBehaviour
             if (answer == arrayObjects[i].GetComponent<AsteroidID>().answer.ToString())
             {
                 correct = true;
+                correctAnswers++;
                 player.GetComponent<Shooting>().Shoot();                            //Shoot the missile
                 Camera.main.GetComponent<EquationWindow>().ClearInputField();       //Clears the input field
                 arrayObjects[i].GetComponent<AsteroidID>().answer = -100000;        //Temporarily delete answer
@@ -175,6 +179,7 @@ public class ObjectPooling : MonoBehaviour
             else
             {
                 correct = false;
+                Camera.main.GetComponent<EquationWindow>().ClearInputField();       //Clears the input field
             }
         }
         return correct;
@@ -182,5 +187,10 @@ public class ObjectPooling : MonoBehaviour
     public void ResetTransformAsteroid(int index)
     {
         pooledObjects.IndexOf(pooledObject, index);
+    }
+
+    public void AsteroidCount()
+    {
+        totalQuestions++;
     }
 }
