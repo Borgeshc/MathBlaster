@@ -20,7 +20,6 @@ public class WaveManager : MonoBehaviour
     public int speedIncreaseAmount;
 
     ObjectPooling objectPooling;
-
     void Start()
     {
         objectPooling = asteroidManager.GetComponent<ObjectPooling>();
