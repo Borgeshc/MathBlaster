@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\EquationUnit.cs" />
     <Compile Include="Assets\Scripts\EquationWindow.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
+    <Compile Include="Assets\Scripts\HoverSound.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\MissileMovement.cs" />
     <Compile Include="Assets\Scripts\ObjectPooling.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Assets\Scripts\ShipMovement.cs" />
     <Compile Include="Assets\Scripts\Shooting.cs" />
     <Compile Include="Assets\Scripts\WaveManager.cs" />
+    <Compile Include="Assets\Scripts\WavePlayAudio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Equations1.txt" />

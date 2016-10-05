@@ -18,6 +18,10 @@ public class AsteroidMovement : MonoBehaviour
     ObjectPooling objectPooling;    //Reference to the pooling script
     GameObject clone;   //Clone to set the explosion to.
     EquationWindow myWindow;
+
+    AudioSource myAudioSource;
+
+    public AudioClip correct, incorrect;
     void Awake()
     {
         asteroidManager = GameObject.Find("AsteroidManager");   //Reference the Asteroid Manager gameobject.
@@ -28,6 +32,8 @@ public class AsteroidMovement : MonoBehaviour
         //Spawn points start outside the screen, so starts out as false
         insideRect = false;
         myWindow = Camera.main.GetComponent<EquationWindow>();
+
+        myAudioSource = GetComponent<AudioSource>();
 
         switch (PlayerPrefs.GetInt("Difficulty"))
         {
@@ -100,15 +106,24 @@ public class AsteroidMovement : MonoBehaviour
             objectPooling.objActive = false;
             Camera.main.GetComponent<WaveManager>().AsteroidDestroyed();
             Camera.main.GetComponent<Score>().AddScore();
+
+            myAudioSource.clip = correct;
+            myAudioSource.Play();
+
             player.GetComponent<Shooting>().shot = false;
             gameObject.SetActive(false);
         }
         if(other.name == "EndOfScreen")
         {
+            myAudioSource.clip = incorrect;
+            myAudioSource.Play();
             Camera.main.GetComponent<WaveManager>().AsteroidDestroyed();
         }
         if (other.name == "Player")
         {
+            myAudioSource.clip = incorrect;
+            myAudioSource.Play();
+
             clone = Instantiate(explosion, GetComponent<RectTransform>().position, GetComponent<RectTransform>().rotation) as GameObject; //Spawn the explosion prefab at the meteor.
             clone.transform.SetParent(player.GetComponent<Shooting>().canvas.transform);    //Child the explosion to the canvas so that it gets rendered.
             objectPooling.objectCount--;                                        //Subtract the count of asteroids.
