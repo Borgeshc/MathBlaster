@@ -2,7 +2,6 @@
 using UnityEngine.EventSystems;
 using System.Collections;
 
-[RequireComponent (typeof (AudioSource))]
 public class HoverSound : MonoBehaviour
 {
     AudioSource mySource;
