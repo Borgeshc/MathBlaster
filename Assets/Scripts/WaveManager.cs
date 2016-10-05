@@ -7,6 +7,9 @@ public class WaveManager : MonoBehaviour
     public GameObject waveCompleteImage;        //Wave completed image
     public GameObject asteroidManager;          //Reference to the asteroid manager
 
+    AudioSource mySource;
+    public AudioClip myClip;
+
     [HideInInspector]
     public int destroyedAsteroids;              //This keeps track of the destroyed asteroid count
     [HideInInspector]
@@ -22,6 +25,13 @@ public class WaveManager : MonoBehaviour
     ObjectPooling objectPooling;
     void Start()
     {
+        if(!GetComponent<AudioSource>())
+        {
+            gameObject.AddComponent<AudioSource>();
+        }
+
+        mySource = GetComponent<AudioSource>();
+
         objectPooling = asteroidManager.GetComponent<ObjectPooling>();
     }
 
@@ -50,5 +60,10 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(3);                                     //waits for 5 seconds
         waveCompleteImage.SetActive(false);                                     //turns the completed wave image off
         objectPooling.stopSpawning = false;     //turns on the spawning
+    }
+    void OnEnable()
+    {
+        mySource.clip = myClip;
+        mySource.Play();
     }
 }
