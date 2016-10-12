@@ -48,6 +48,7 @@ public class EquationWindow : MonoBehaviour
         {
             userEnterText = myInputField.text;
             astManager.GetComponent<ObjectPooling>().CompareAnswers(userEnterText);
+            myInputField.text = "";
         }
     }
     /*int CompareResults(string text)
