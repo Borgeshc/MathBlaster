@@ -25,11 +25,6 @@ public class Score : MonoBehaviour
         lifeText.text = "Health: " + health; //displaying the health
     }
 
-    void Update()
-    {
-        print(combo);
-    }
-
     public void AddScore()
     {
         score += 1 + combo;  //adding 1 additional point per combo

@@ -167,8 +167,9 @@ public class ObjectPooling : MonoBehaviour
         bool correct = false;
         for (int i = 0; i < objectCount; i++)
         {
-            if (answer == arrayObjects[i].GetComponent<AsteroidID>().answer.ToString())
+			if (answer == arrayObjects[i].GetComponent<AsteroidID>().answer.ToString())
             {
+				//chnagebool
                 correct = true;
                 correctAnswers++;
                 player.GetComponent<Shooting>().Shoot();                            //Shoot the missile

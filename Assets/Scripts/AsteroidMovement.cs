@@ -11,7 +11,7 @@ public class AsteroidMovement : MonoBehaviour
     //bool that identifies if the asteroid is inside the screen "Rectangle"
     public bool insideRect;
     //Stores the int to re-add the equation to the original list to re-use if possible
-    int equationIndex;
+    string equation;
     int inQuadNum;
 
     GameObject player;      //Reference to the player.
@@ -35,17 +35,17 @@ public class AsteroidMovement : MonoBehaviour
 
         myAudioSource = GetComponent<AudioSource>();
 
-        switch (PlayerPrefs.GetInt("Difficulty"))
+		switch (DifficultyChosen.difficultyChosen)
         {
-            case 0:
+            case 1:
                 speed = 125;
                 break;
 
-            case 1:
+            case 2:
                 speed *= 0.5f;
                 break;
 
-            case 2:
+            case 3:
                 speed *= 0.25f;
                 break;
         }
@@ -84,12 +84,14 @@ public class AsteroidMovement : MonoBehaviour
             gameObject.SetActive(false);    //Turns off the gameobject.
         }
     }
+	//displaying the asteroid text
     void WriteEquationOnAsteroid()
     {
         objectPooling.AsteroidCount();
-        equationIndex = Camera.main.GetComponent<EquationWindow>().ListEquations();
-        gameObject.GetComponentInChildren<Text>().text = Camera.main.GetComponent<EquationWindow>().WriteEquation(equationIndex);
-        gameObject.GetComponent<AsteroidID>().answer = int.Parse(myWindow.equBank.GetEquationResult(equationIndex));
+//        equationIndex = Camera.main.GetComponent<EquationWindow>().ListEquations();
+		gameObject.GetComponentInChildren<Text>().text = Camera.main.GetComponent<EquationWindow>().Equation;
+		gameObject.GetComponent<AsteroidID> ().answer = Camera.main.GetComponent<EquationWindow> ().answer;
+      //  gameObject.GetComponent<AsteroidID>().answer = int.Parse(myWindow.equBank.GetEquationResult(equationIndex));
     }
     public void QuadNum(int quadNum)
     {
