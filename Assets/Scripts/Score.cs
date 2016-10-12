@@ -24,12 +24,6 @@ public class Score : MonoBehaviour
         health = player.GetComponent<Health>().health; //getting the health
         lifeText.text = "Health: " + health; //displaying the health
     }
-
-    void Update()
-    {
-        print(combo);
-    }
-
     public void AddScore()
     {
         score += 1 + combo;  //adding 1 additional point per combo

@@ -42,14 +42,12 @@ public class ShipMovement : MonoBehaviour
 
         if (lastPosition.y < transform.position.y)
         {
-            print("MovedUp");
             lastPosition = transform.position;
             shipAnim.SetInteger("Move", 0);
             shipAnim.SetInteger("Move", 1);
         }
         if (lastPosition.y > transform.position.y)
         {
-            print("MovedDown");
             lastPosition = transform.position;
             shipAnim.SetInteger("Move", 0);
             shipAnim.SetInteger("Move", -1);
