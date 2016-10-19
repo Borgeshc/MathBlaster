@@ -20,7 +20,7 @@ public class ResultScripts : MonoBehaviour
         resultCorrect.text = "Correct: " + PlayerPrefs.GetInt("Correct");
 		resultEquations.text = "Total: " + PlayerPrefs.GetInt("Total");
 
-        switch (PlayerPrefs.GetInt("Difficulty"))
+        switch (DifficultyChosen.difficultyChosen)
         {
             case 0:
                 resultLevel.text = "Difficulty: Easy";

@@ -56,18 +56,18 @@ public class EquationWindow : MonoBehaviour
         astManager = GameObject.Find("AsteroidManager");
 		//difficulty = 												//Get the difficulty from Prefs GO
 
-		if (DifficultyChosen.difficultyChosen == 1) 						//easy
+		if (DifficultyChosen.difficultyChosen == 0) 						//easy
 		{ 		
 			print ("Happened");
 			EasyEquation ();
 		} 
-		else if  (DifficultyChosen.difficultyChosen == 2) 						//medium
+		else if  (DifficultyChosen.difficultyChosen == 1) 						//medium
 		{ 		
 			print ("Happened");
 			mediumEquation ();
 		} 
 
-		else if (DifficultyChosen.difficultyChosen == 3) 						//hard
+		else if (DifficultyChosen.difficultyChosen == 2) 						//hard
 		{ 		
 			print ("Hard Mode");
             HardEquation();

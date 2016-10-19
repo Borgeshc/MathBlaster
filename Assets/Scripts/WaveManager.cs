@@ -34,18 +34,18 @@ public class WaveManager : MonoBehaviour
         {
             StartCoroutine(WaveCompleted());
 		}
-		if (DifficultyChosen.difficultyChosen == 1) 						//easy
+		if (DifficultyChosen.difficultyChosen == 0) 						//easy
 		{ 		
 			print ("Happened");
 			Camera.main.GetComponent<EquationWindow>().EasyEquation ();
 		} 
-		else if  (DifficultyChosen.difficultyChosen == 2) 						//medium
+		else if  (DifficultyChosen.difficultyChosen == 1) 						//medium
 		{ 		
 			print ("Happened");
 			Camera.main.GetComponent<EquationWindow>().mediumEquation ();
 		} 
 
-		else if (DifficultyChosen.difficultyChosen == 3) 						//hard
+		else if (DifficultyChosen.difficultyChosen == 2) 						//hard
 		{ 		
 			print ("Hard Mode");
 			Camera.main.GetComponent<EquationWindow>().HardEquation ();
