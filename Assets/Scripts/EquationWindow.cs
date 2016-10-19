@@ -24,7 +24,9 @@ public class EquationWindow : MonoBehaviour
 
 	public int difficulty;
 
-	public string Equation
+    
+
+    public string Equation
 	{
 		get{return equation;}
 		set{equation = value;}
@@ -67,11 +69,9 @@ public class EquationWindow : MonoBehaviour
 
 		else if (DifficultyChosen.difficultyChosen == 3) 						//hard
 		{ 		
-			print ("Happened");
-			EasyEquation ();
+			print ("Hard Mode");
+            HardEquation();
 		} 
-
-
     }
 
 
@@ -110,21 +110,6 @@ public class EquationWindow : MonoBehaviour
         myInputField.text = null;
     }
 
-    public void ListEquations()
-    {
-        /*
-         * //List<string> usedEquations = new List<string>(equations);
-        int indexedEquation = UnityEngine.Random.Range(0, equations.Length);
-
-        if (!usedEquations.Contains(equBank.GetEquations(indexedEquation)))
-        {
-            usedEquations.Add(equBank.GetEquations(indexedEquation));
-        }
-        return indexedEquation;
-		*/
-
-
-    }
 	//display correct answer
     public string WriteEquation(string index)
     {
@@ -235,4 +220,52 @@ public class EquationWindow : MonoBehaviour
 			Equation = randomInt1.ToString ()+  " - " + randomInt2.ToString ();
 		}
 	}
+    //Hard Level void
+    public void HardEquation()
+    {
+        int xVar, int0, int1, int2;                   //(int0)X +- (int1) = (int2)
+        char myOperator = '+';
+        int chooseMyOperator;
+
+        xVar = Random.Range(0, 10);            //X Variable
+        int0 = Random.Range(0, 10);            //Coefficient of X
+        int1 = Random.Range(0, 20);            //Adding Subtracting
+
+        chooseMyOperator = Random.Range(0, 2);
+
+        if (chooseMyOperator == 0)        //Even - Subtraction
+            myOperator = '-';
+        else if (chooseMyOperator == 1)
+            myOperator = '+';
+
+        if (myOperator == '+')
+        {
+            int2 = (xVar * int0) + int1;
+            if (int2 < 0)
+            {
+                HardEquation();
+                return;
+            }
+            print(int0 + "X " + myOperator + " " + int1 + " = " + int2);
+            Answer = xVar;
+            Equation = int0 + "X " + myOperator + int1 + " = " + int2;
+        }
+        else
+        {
+            int2 = (xVar * int0) - int1;
+            if (int2 < 0)
+            {
+                HardEquation();
+                return;
+            }
+            print(int0 + "X " + myOperator + " " + int1 + " = " + int2);
+            Answer = xVar;
+            Equation = int0 + "X " + myOperator + int1 + " = " + int2;
+        }
+        xVar = Random.Range(0, 10);            //X Variable
+        int0 = Random.Range(0, 10);            //Coefficient of X
+        int1 = Random.Range(0, 20);            //Adding Subtracting
+
+        chooseMyOperator = Random.Range(0, 2);
+    }
 }

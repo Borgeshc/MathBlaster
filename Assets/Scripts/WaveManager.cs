@@ -47,8 +47,8 @@ public class WaveManager : MonoBehaviour
 
 		else if (DifficultyChosen.difficultyChosen == 3) 						//hard
 		{ 		
-			print ("Happened");
-			//Camera.main.GetComponent<EquationWindow>().HardEquation ();
+			print ("Hard Mode");
+			Camera.main.GetComponent<EquationWindow>().HardEquation ();
 		}
     }
 
