@@ -33,7 +33,23 @@ public class WaveManager : MonoBehaviour
         if (destroyedAsteroids == waveComplete)    //if the number of destroyed asteroid reaches the wave complete number
         {
             StartCoroutine(WaveCompleted());
-        }
+		}
+		if (DifficultyChosen.difficultyChosen == 1) 						//easy
+		{ 		
+			print ("Happened");
+			Camera.main.GetComponent<EquationWindow>().EasyEquation ();
+		} 
+		else if  (DifficultyChosen.difficultyChosen == 2) 						//medium
+		{ 		
+			print ("Happened");
+			Camera.main.GetComponent<EquationWindow>().mediumEquation ();
+		} 
+
+		else if (DifficultyChosen.difficultyChosen == 3) 						//hard
+		{ 		
+			print ("Hard Mode");
+			Camera.main.GetComponent<EquationWindow>().HardEquation ();
+		}
     }
 
     IEnumerator WaveCompleted()     
